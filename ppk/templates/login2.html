@@ -1,0 +1,91 @@
+<html>
+  <head>
+    <title>Login Page</title>
+    <style>
+      .container {
+        background-color: black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      form {
+        background-color: gray;
+        padding: 40px;
+        box-shadow: 2px 2px 10px #ccc;
+        border-radius: 10px;
+        animation: fadeIn 1s ease-out;
+      }
+
+      input[type="text"],
+      input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+      }
+
+      input[type="submit"] {
+        width: 100%;
+        padding: 10px;
+        background-color: #333;
+        color: white;
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
+      }
+
+      input[type="PPK"] {
+        width: 100%;
+        padding: 10px;
+        background-color: #333;
+        color: white;
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
+      }
+
+
+      input[type="submit"]:hover {
+        background-color: #555;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <form id="login-form">
+        <label>
+          <input type="text" name="username" placeholder="Username">
+        </label>
+        <label>
+          <input type="password" name="password" placeholder="Password">
+        </label>
+        <label>
+          <input type="PPK" value="Login Using PPK">
+        </label>
+        <input type="submit" value="Submit">
+      </form>
+    </div>
+    <script>
+      const form = document.getElementById("login-form");
+      form.addEventListener("submit", function(event) {
+        event.preventDefault();
+        // Send login request to the Flask server
+        // ...
+      });
+    </script>
+  </body>
+</html>

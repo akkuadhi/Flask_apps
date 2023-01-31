@@ -1,0 +1,12 @@
+<html>
+  <head>
+    <title>Username Example</title>
+  </head>
+  <body>
+    {% if username %}
+      <p>Welcome, {{ username }}!</p>
+    {% else %}
+      <p>Please log in <a href="/login">here</a>.</p>
+    {% endif %}
+  </body>
+</html>

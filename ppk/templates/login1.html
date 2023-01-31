@@ -1,0 +1,79 @@
+<html>
+  <head>
+    <title>Login Page</title>
+    <style>
+      /* Add styles for the login page */
+      .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      form {
+        background-color: #f2f2f2;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 2px 2px 10px #ccc;
+        text-align: center;
+      }
+      input[type="text"], input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border: none;
+        border-radius: 5px;
+      }
+      input[type="submit"] {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
+      }
+      input[type="submit"]:hover {
+        background-color: #3e8e41;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <form id="login-form">
+        <h2>Login</h2>
+        <input type="text" placeholder="Username" id="username" required>
+        <input type="password" placeholder="Password" id="password" required>
+        <input type="submit" value="Submit">
+      </form>
+    </div>
+    <script>
+      // Add JavaScript for form validation and submission
+      const form = document.getElementById("login-form");
+      form.addEventListener("submit", function(event) {
+        event.preventDefault();
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+        // Perform validation
+        if (!username || !password) {
+          alert("Please enter both username and password");
+          return;
+        }
+        // Submit the form
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", "/login", true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.onreadystatechange = function() {
+          if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+            // Handle successful submission
+            const response = JSON.parse(this.responseText);
+            if (response.success) {
+              window.location.href = "/";
+            } else {
+              alert("Incorrect username or password");
+            }
+          }
+        };
+        xhr.send(`username=${username}&password=${password}`);
+      });
+    </script>
+  </body>
+</html>
