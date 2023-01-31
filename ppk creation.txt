@@ -1,0 +1,20 @@
+from flask import Flask, request, render_template
+from paramiko import RSAKey, RSAKeyError
+
+app = Flask(__name__)
+
+@app.route('/', methods=['GET', 'POST'])
+def index():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        try:
+            private_key = RSAKey.generate(2048)
+            private_key.write_private_key_file(f"{username}.pem", password=password)
+            return 'PPK file created successfully'
+        except RSAKeyError:
+            return 'Error creating PPK file'
+    return render_template('index.html')
+
+if __name__ == '__main__':
+    app.run()
